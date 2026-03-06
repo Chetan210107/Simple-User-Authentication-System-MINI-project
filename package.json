@@ -1,0 +1,21 @@
+{
+  "name": "quiz-app",
+  "version": "1.0.0",
+  "description": "MERN stack quiz app",
+  "main": "server/index.js",
+  "scripts": {
+    "setup": "npm install && cd client && npm install && cd ../server && npm install",
+    "start-client": "npm start --prefix client",
+    "start-server": "npm start --prefix server",
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  },
+  "dependencies": {
+    "quiz-app": "file:"
+  }
+}

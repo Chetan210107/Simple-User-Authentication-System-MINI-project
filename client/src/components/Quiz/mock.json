@@ -1,0 +1,2252 @@
+[
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which protocol is commonly used to secure wireless networks?",
+    "correct_answer": "WPA2",
+    "incorrect_answers": [
+      "WEP",
+      "HTTP",
+      "FTP"
+    ],
+    "options": [
+      "FTP",
+      "WEP",
+      "WPA2",
+      "HTTP"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the primary tool used for cracking WPA/WPA2 passwords?",
+    "correct_answer": "Aircrack-ng",
+    "incorrect_answers": [
+      "Nmap",
+      "Wireshark",
+      "Burp Suite"
+    ],
+    "options": [
+      "Wireshark",
+      "Burp Suite",
+      "Nmap",
+      "Aircrack-ng"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which wireless attack involves creating a fake access point?",
+    "correct_answer": "Evil Twin",
+    "incorrect_answers": [
+      "Man-in-the-middle",
+      "SQL Injection",
+      "Brute Force"
+    ],
+    "options": [
+      "Man-in-the-middle",
+      "Evil Twin",
+      "SQL Injection",
+      "Brute Force"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Zigbee and Z-Wave are protocols primarily used in:",
+    "correct_answer": "IoT devices",
+    "incorrect_answers": [
+      "Web development",
+      "Cloud computing",
+      "Databases"
+    ],
+    "options": [
+      "Web development",
+      "IoT devices",
+      "Cloud computing",
+      "Databases"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which tool is used for Bluetooth hacking?",
+    "correct_answer": "Hciconfig",
+    "incorrect_answers": [
+      "Metasploit",
+      "SQLMap",
+      "Nikto"
+    ],
+    "options": [
+      "SQLMap",
+      "Hciconfig",
+      "Nikto",
+      "Metasploit"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Metasploit is primarily a:",
+    "correct_answer": "Penetration testing framework",
+    "incorrect_answers": [
+      "Web browser",
+      "Database tool",
+      "Text editor"
+    ],
+    "options": [
+      "Web browser",
+      "Text editor",
+      "Penetration testing framework",
+      "Database tool"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which command is used to search for exploits in Metasploit?",
+    "correct_answer": "search",
+    "incorrect_answers": [
+      "find",
+      "locate",
+      "scan"
+    ],
+    "options": [
+      "find",
+      "search",
+      "scan",
+      "locate"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In Metasploit, what is a payload?",
+    "correct_answer": "Code executed after exploitation",
+    "incorrect_answers": [
+      "The vulnerability itself",
+      "A scanning module",
+      "A report generator"
+    ],
+    "options": [
+      "Code executed after exploitation",
+      "A scanning module",
+      "A report generator",
+      "The vulnerability itself"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which Metasploit module is used for information gathering?",
+    "correct_answer": "Auxiliary",
+    "incorrect_answers": [
+      "Exploits",
+      "Payloads",
+      "Post"
+    ],
+    "options": [
+      "Post",
+      "Auxiliary",
+      "Payloads",
+      "Exploits"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Meterpreter in Metasploit provides:",
+    "correct_answer": "An advanced dynamic payload",
+    "incorrect_answers": [
+      "A basic shell",
+      "Static analysis",
+      "Packet sniffing"
+    ],
+    "options": [
+      "Static analysis",
+      "A basic shell",
+      "An advanced dynamic payload",
+      "Packet sniffing"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Spear phishing targets:",
+    "correct_answer": "Specific individuals or organizations",
+    "incorrect_answers": [
+      "Random users",
+      "All internet users",
+      "Only IT professionals"
+    ],
+    "options": [
+      "All internet users",
+      "Only IT professionals",
+      "Specific individuals or organizations",
+      "Random users"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Pretexting in social engineering involves:",
+    "correct_answer": "Creating a fabricated scenario",
+    "incorrect_answers": [
+      "Sending malware",
+      "Scanning networks",
+      "Exploiting software"
+    ],
+    "options": [
+      "Exploiting software",
+      "Sending malware",
+      "Scanning networks",
+      "Creating a fabricated scenario"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Baiting attack typically uses:",
+    "correct_answer": "Infected USB drives",
+    "incorrect_answers": [
+      "SQL queries",
+      "Port scanning",
+      "Buffer overflow"
+    ],
+    "options": [
+      "SQL queries",
+      "Infected USB drives",
+      "Buffer overflow",
+      "Port scanning"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Whaling is a type of phishing that targets:",
+    "correct_answer": "High-level executives",
+    "incorrect_answers": [
+      "Junior employees",
+      "Random emails",
+      "Server admins"
+    ],
+    "options": [
+      "Junior employees",
+      "Server admins",
+      "High-level executives",
+      "Random emails"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Vishing is social engineering conducted via:",
+    "correct_answer": "Phone calls",
+    "incorrect_answers": [
+      "Email",
+      "USB drives",
+      "Websites"
+    ],
+    "options": [
+      "Websites",
+      "Phone calls",
+      "USB drives",
+      "Email"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Static malware analysis involves:",
+    "correct_answer": "Examining code without execution",
+    "incorrect_answers": [
+      "Running the malware",
+      "Network monitoring",
+      "Social engineering"
+    ],
+    "options": [
+      "Social engineering",
+      "Network monitoring",
+      "Examining code without execution",
+      "Running the malware"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which tool is commonly used for reverse engineering?",
+    "correct_answer": "IDA Pro",
+    "incorrect_answers": [
+      "Nmap",
+      "Wireshark",
+      "Burp Suite"
+    ],
+    "options": [
+      "IDA Pro",
+      "Burp Suite",
+      "Wireshark",
+      "Nmap"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "A keylogger is a type of:",
+    "correct_answer": "Spyware",
+    "incorrect_answers": [
+      "Antivirus",
+      "Firewall",
+      "Protocol"
+    ],
+    "options": [
+      "Spyware",
+      "Antivirus",
+      "Protocol",
+      "Firewall"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Polymorphic malware is designed to:",
+    "correct_answer": "Change its code to avoid detection",
+    "incorrect_answers": [
+      "Stay the same",
+      "Self-destruct",
+      "Encrypt networks"
+    ],
+    "options": [
+      "Encrypt networks",
+      "Self-destruct",
+      "Stay the same",
+      "Change its code to avoid detection"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Sandbox analysis runs malware in:",
+    "correct_answer": "An isolated environment",
+    "incorrect_answers": [
+      "A production environment",
+      "The cloud",
+      "A public server"
+    ],
+    "options": [
+      "A public server",
+      "The cloud",
+      "A production environment",
+      "An isolated environment"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The first phase of penetration testing is:",
+    "correct_answer": "Reconnaissance",
+    "incorrect_answers": [
+      "Exploitation",
+      "Reporting",
+      "Gaining access"
+    ],
+    "options": [
+      "Gaining access",
+      "Reporting",
+      "Reconnaissance",
+      "Exploitation"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Black-box testing means the tester:",
+    "correct_answer": "Has no prior knowledge of the system",
+    "incorrect_answers": [
+      "Has full knowledge",
+      "Tests only hardware",
+      "Skips reporting"
+    ],
+    "options": [
+      "Has full knowledge",
+      "Tests only hardware",
+      "Has no prior knowledge of the system",
+      "Skips reporting"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "OWASP stands for:",
+    "correct_answer": "Open Web Application Security Project",
+    "incorrect_answers": [
+      "Online Web App Scanning Protocol",
+      "Open Wireless Application Security Plan",
+      "None of the above"
+    ],
+    "options": [
+      "None of the above",
+      "Online Web App Scanning Protocol",
+      "Open Web Application Security Project",
+      "Open Wireless Application Security Plan"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which tool is used for web application penetration testing?",
+    "correct_answer": "Burp Suite",
+    "incorrect_answers": [
+      "GCC",
+      "Notepad",
+      "Excel"
+    ],
+    "options": [
+      "Excel",
+      "Burp Suite",
+      "Notepad",
+      "GCC"
+    ]
+  },
+  {
+    "category": "ETHICAL HACKING",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Vulnerability assessment differs from penetration testing in that it:",
+    "correct_answer": "Identifies vulnerabilities without exploitation",
+    "incorrect_answers": [
+      "Exploits vulnerabilities",
+      "Only tests networks",
+      "Is done by end users"
+    ],
+    "options": [
+      "Only tests networks",
+      "Is done by end users",
+      "Identifies vulnerabilities without exploitation",
+      "Exploits vulnerabilities"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The CIA triad in network security stands for:",
+    "correct_answer": "Confidentiality, Integrity, Availability",
+    "incorrect_answers": [
+      "Central Intelligence Agency",
+      "Computer Internet Access",
+      "None of the above"
+    ],
+    "options": [
+      "Confidentiality, Integrity, Availability",
+      "Central Intelligence Agency",
+      "Computer Internet Access",
+      "None of the above"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "A DMZ in network security is:",
+    "correct_answer": "A zone separating internal and external networks",
+    "incorrect_answers": [
+      "A type of malware",
+      "A scanning technique",
+      "An encryption standard"
+    ],
+    "options": [
+      "A type of malware",
+      "A zone separating internal and external networks",
+      "A scanning technique",
+      "An encryption standard"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Network Access Control (NAC) is used to:",
+    "correct_answer": "Control device access to a network",
+    "incorrect_answers": [
+      "Speed up internet",
+      "Delete files",
+      "Create websites"
+    ],
+    "options": [
+      "Create websites",
+      "Control device access to a network",
+      "Speed up internet",
+      "Delete files"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The principle of least privilege means:",
+    "correct_answer": "Providing minimum required access",
+    "incorrect_answers": [
+      "Giving all access to all users",
+      "Blocking all access",
+      "Only using root accounts"
+    ],
+    "options": [
+      "Giving all access to all users",
+      "Blocking all access",
+      "Only using root accounts",
+      "Providing minimum required access"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which layer of the OSI model does SSL/TLS primarily operate at?",
+    "correct_answer": "Session/Transport layer",
+    "incorrect_answers": [
+      "Physical layer",
+      "Network layer",
+      "Data Link layer"
+    ],
+    "options": [
+      "Data Link layer",
+      "Physical layer",
+      "Session/Transport layer",
+      "Network layer"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "AES stands for:",
+    "correct_answer": "Advanced Encryption Standard",
+    "incorrect_answers": [
+      "Automated Encoding System",
+      "Application Encryption Software",
+      "None of the above"
+    ],
+    "options": [
+      "Advanced Encryption Standard",
+      "Application Encryption Software",
+      "None of the above",
+      "Automated Encoding System"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "RSA is an example of:",
+    "correct_answer": "Asymmetric encryption",
+    "incorrect_answers": [
+      "Symmetric encryption",
+      "Hashing",
+      "Steganography"
+    ],
+    "options": [
+      "Symmetric encryption",
+      "Hashing",
+      "Steganography",
+      "Asymmetric encryption"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Diffie-Hellman algorithm is used for:",
+    "correct_answer": "Key exchange",
+    "incorrect_answers": [
+      "Encryption",
+      "Hashing",
+      "Authentication"
+    ],
+    "options": [
+      "Hashing",
+      "Encryption",
+      "Authentication",
+      "Key exchange"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "SHA-256 produces a hash of:",
+    "correct_answer": "256 bits",
+    "incorrect_answers": [
+      "128 bits",
+      "512 bits",
+      "64 bits"
+    ],
+    "options": [
+      "512 bits",
+      "128 bits",
+      "256 bits",
+      "64 bits"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In public key cryptography, the public key is used for:",
+    "correct_answer": "Encryption",
+    "incorrect_answers": [
+      "Decryption",
+      "Hashing",
+      "Signing only"
+    ],
+    "options": [
+      "Hashing",
+      "Decryption",
+      "Signing only",
+      "Encryption"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "IPSec operates at which OSI layer?",
+    "correct_answer": "Network layer",
+    "incorrect_answers": [
+      "Application layer",
+      "Transport layer",
+      "Data Link layer"
+    ],
+    "options": [
+      "Application layer",
+      "Network layer",
+      "Transport layer",
+      "Data Link layer"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "SSL stands for:",
+    "correct_answer": "Secure Socket Layer",
+    "incorrect_answers": [
+      "System Security Level",
+      "Standard Security Lock",
+      "None of the above"
+    ],
+    "options": [
+      "Secure Socket Layer",
+      "System Security Level",
+      "Standard Security Lock",
+      "None of the above"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which protocol replaced SSL?",
+    "correct_answer": "TLS",
+    "incorrect_answers": [
+      "SSH",
+      "FTP",
+      "SMTP"
+    ],
+    "options": [
+      "SMTP",
+      "FTP",
+      "TLS",
+      "SSH"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "A VPN creates a:",
+    "correct_answer": "Secure encrypted tunnel",
+    "incorrect_answers": [
+      "Public network",
+      "Local database",
+      "Wireless hotspot"
+    ],
+    "options": [
+      "Local database",
+      "Wireless hotspot",
+      "Public network",
+      "Secure encrypted tunnel"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "HTTPS uses which port by default?",
+    "correct_answer": "443",
+    "incorrect_answers": [
+      "80",
+      "21",
+      "25"
+    ],
+    "options": [
+      "21",
+      "443",
+      "80",
+      "25"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "IDS stands for:",
+    "correct_answer": "Intrusion Detection System",
+    "incorrect_answers": [
+      "Internet Data Service",
+      "Integrated Defense Software",
+      "None of the above"
+    ],
+    "options": [
+      "None of the above",
+      "Intrusion Detection System",
+      "Integrated Defense Software",
+      "Internet Data Service"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The difference between IDS and IPS is:",
+    "correct_answer": "IDS detects, IPS prevents",
+    "incorrect_answers": [
+      "IDS prevents, IPS detects",
+      "Both are same",
+      "Neither detects"
+    ],
+    "options": [
+      "IDS detects, IPS prevents",
+      "IDS prevents, IPS detects",
+      "Neither detects",
+      "Both are same"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "A stateful firewall tracks:",
+    "correct_answer": "Active connections",
+    "incorrect_answers": [
+      "Only IP addresses",
+      "Only ports",
+      "User passwords"
+    ],
+    "options": [
+      "User passwords",
+      "Only ports",
+      "Active connections",
+      "Only IP addresses"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "SIEM stands for:",
+    "correct_answer": "Security Information and Event Management",
+    "incorrect_answers": [
+      "System Internet Email Manager",
+      "Secure Internal Encryption Module",
+      "None of the above"
+    ],
+    "options": [
+      "Secure Internal Encryption Module",
+      "None of the above",
+      "System Internet Email Manager",
+      "Security Information and Event Management"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Snort is an example of:",
+    "correct_answer": "IDS/IPS",
+    "incorrect_answers": [
+      "Firewall",
+      "Antivirus",
+      "VPN"
+    ],
+    "options": [
+      "IDS/IPS",
+      "Firewall",
+      "Antivirus",
+      "VPN"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "SQL Injection attacks target:",
+    "correct_answer": "Web application databases",
+    "incorrect_answers": [
+      "The network layer",
+      "Hardware devices",
+      "Operating systems"
+    ],
+    "options": [
+      "Hardware devices",
+      "Operating systems",
+      "Web application databases",
+      "The network layer"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "XSS stands for:",
+    "correct_answer": "Cross-Site Scripting",
+    "incorrect_answers": [
+      "Extra Secure Socket",
+      "Extended System Service",
+      "None of the above"
+    ],
+    "options": [
+      "Extended System Service",
+      "Cross-Site Scripting",
+      "None of the above",
+      "Extra Secure Socket"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "CSRF stands for:",
+    "correct_answer": "Cross-Site Request Forgery",
+    "incorrect_answers": [
+      "Certified Security Resource Format",
+      "Central Server Request Function",
+      "None of the above"
+    ],
+    "options": [
+      "None of the above",
+      "Certified Security Resource Format",
+      "Cross-Site Request Forgery",
+      "Central Server Request Function"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which HTTP header helps prevent XSS attacks?",
+    "correct_answer": "Content-Security-Policy",
+    "incorrect_answers": [
+      "Content-Type",
+      "Accept-Language",
+      "Host"
+    ],
+    "options": [
+      "Accept-Language",
+      "Content-Type",
+      "Content-Security-Policy",
+      "Host"
+    ]
+  },
+  {
+    "category": "ADVANCE NETWORK SECURITY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "API rate limiting is used to:",
+    "correct_answer": "Prevent abuse and DDoS",
+    "incorrect_answers": [
+      "Speed up API calls",
+      "Encrypt data",
+      "Create APIs"
+    ],
+    "options": [
+      "Encrypt data",
+      "Speed up API calls",
+      "Prevent abuse and DDoS",
+      "Create APIs"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "ER stands for:",
+    "correct_answer": "Entity Relationship",
+    "incorrect_answers": [
+      "Error Recovery",
+      "Extended Result",
+      "None of the above"
+    ],
+    "options": [
+      "None of the above",
+      "Error Recovery",
+      "Entity Relationship",
+      "Extended Result"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In an ER diagram, an entity is represented by:",
+    "correct_answer": "Rectangle",
+    "incorrect_answers": [
+      "Circle",
+      "Diamond",
+      "Triangle"
+    ],
+    "options": [
+      "Rectangle",
+      "Circle",
+      "Diamond",
+      "Triangle"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "A weak entity depends on:",
+    "correct_answer": "Strong entity",
+    "incorrect_answers": [
+      "Attribute",
+      "Relationship",
+      "Primary key"
+    ],
+    "options": [
+      "Relationship",
+      "Strong entity",
+      "Primary key",
+      "Attribute"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In EER, specialization is a:",
+    "correct_answer": "Top-down approach",
+    "incorrect_answers": [
+      "Bottom-up approach",
+      "Random approach",
+      "None of the above"
+    ],
+    "options": [
+      "Random approach",
+      "None of the above",
+      "Bottom-up approach",
+      "Top-down approach"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Total participation in an ER diagram is represented by:",
+    "correct_answer": "Double line",
+    "incorrect_answers": [
+      "Single line",
+      "Dashed line",
+      "Dotted line"
+    ],
+    "options": [
+      "Double line",
+      "Single line",
+      "Dashed line",
+      "Dotted line"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "DDL stands for:",
+    "correct_answer": "Data Definition Language",
+    "incorrect_answers": [
+      "Data Display Language",
+      "Dynamic Data Link",
+      "None of the above"
+    ],
+    "options": [
+      "None of the above",
+      "Dynamic Data Link",
+      "Data Definition Language",
+      "Data Display Language"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which command is used to create a table?",
+    "correct_answer": "CREATE TABLE",
+    "incorrect_answers": [
+      "INSERT",
+      "ALTER",
+      "UPDATE"
+    ],
+    "options": [
+      "ALTER",
+      "CREATE TABLE",
+      "INSERT",
+      "UPDATE"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The PRIMARY KEY constraint ensures:",
+    "correct_answer": "Unique and NOT NULL values",
+    "incorrect_answers": [
+      "Only unique values",
+      "Only NOT NULL values",
+      "None of the above"
+    ],
+    "options": [
+      "Unique and NOT NULL values",
+      "Only unique values",
+      "Only NOT NULL values",
+      "None of the above"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which constraint ensures referential integrity?",
+    "correct_answer": "FOREIGN KEY",
+    "incorrect_answers": [
+      "CHECK",
+      "UNIQUE",
+      "NOT NULL"
+    ],
+    "options": [
+      "CHECK",
+      "UNIQUE",
+      "FOREIGN KEY",
+      "NOT NULL"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "ALTER TABLE is used to:",
+    "correct_answer": "Modify table structure",
+    "incorrect_answers": [
+      "Delete a table",
+      "Insert data",
+      "Select data"
+    ],
+    "options": [
+      "Modify table structure",
+      "Delete a table",
+      "Select data",
+      "Insert data"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "DML stands for:",
+    "correct_answer": "Data Manipulation Language",
+    "incorrect_answers": [
+      "Database Modification Logic",
+      "Data Mining Language",
+      "None of the above"
+    ],
+    "options": [
+      "Data Mining Language",
+      "Database Modification Logic",
+      "None of the above",
+      "Data Manipulation Language"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which command is used to add new rows to a table?",
+    "correct_answer": "INSERT",
+    "incorrect_answers": [
+      "SELECT",
+      "UPDATE",
+      "DELETE"
+    ],
+    "options": [
+      "INSERT",
+      "SELECT",
+      "DELETE",
+      "UPDATE"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "SELECT DISTINCT is used to:",
+    "correct_answer": "Remove duplicate rows from results",
+    "incorrect_answers": [
+      "Select all rows",
+      "Count rows",
+      "Sort rows"
+    ],
+    "options": [
+      "Sort rows",
+      "Remove duplicate rows from results",
+      "Select all rows",
+      "Count rows"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The WHERE clause is used to:",
+    "correct_answer": "Filter rows based on conditions",
+    "incorrect_answers": [
+      "Sort results",
+      "Group data",
+      "Join tables"
+    ],
+    "options": [
+      "Sort results",
+      "Filter rows based on conditions",
+      "Join tables",
+      "Group data"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "ORDER BY clause can sort data in:",
+    "correct_answer": "Both ascending and descending order",
+    "incorrect_answers": [
+      "Only ascending",
+      "Only descending",
+      "Random order"
+    ],
+    "options": [
+      "Random order",
+      "Both ascending and descending order",
+      "Only ascending",
+      "Only descending"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "INNER JOIN returns:",
+    "correct_answer": "Matching rows from both tables",
+    "incorrect_answers": [
+      "All rows from both tables",
+      "All rows from left table",
+      "All rows from right table"
+    ],
+    "options": [
+      "Matching rows from both tables",
+      "All rows from both tables",
+      "All rows from right table",
+      "All rows from left table"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "LEFT OUTER JOIN includes:",
+    "correct_answer": "All left table rows plus matching right rows",
+    "incorrect_answers": [
+      "Only matching rows",
+      "All right table rows",
+      "None of the above"
+    ],
+    "options": [
+      "All right table rows",
+      "None of the above",
+      "Only matching rows",
+      "All left table rows plus matching right rows"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "A subquery is:",
+    "correct_answer": "A query within another query",
+    "incorrect_answers": [
+      "A stored procedure",
+      "A trigger",
+      "A view"
+    ],
+    "options": [
+      "A query within another query",
+      "A trigger",
+      "A stored procedure",
+      "A view"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which keyword is used with subqueries returning multiple rows?",
+    "correct_answer": "IN",
+    "incorrect_answers": [
+      "=",
+      "LIKE",
+      "BETWEEN"
+    ],
+    "options": [
+      "=",
+      "LIKE",
+      "BETWEEN",
+      "IN"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "A self-join is:",
+    "correct_answer": "Joining a table with itself",
+    "incorrect_answers": [
+      "Joining two different tables",
+      "A cross join",
+      "None of the above"
+    ],
+    "options": [
+      "A cross join",
+      "None of the above",
+      "Joining two different tables",
+      "Joining a table with itself"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "A view in SQL is:",
+    "correct_answer": "A virtual table based on a query",
+    "incorrect_answers": [
+      "A physical table",
+      "A stored procedure",
+      "An index"
+    ],
+    "options": [
+      "A physical table",
+      "A virtual table based on a query",
+      "A stored procedure",
+      "An index"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "CREATE VIEW is used to:",
+    "correct_answer": "Create a virtual table",
+    "incorrect_answers": [
+      "Create a physical table",
+      "Delete a table",
+      "Modify a table"
+    ],
+    "options": [
+      "Create a virtual table",
+      "Modify a table",
+      "Create a physical table",
+      "Delete a table"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "An index in a database improves:",
+    "correct_answer": "Query performance",
+    "incorrect_answers": [
+      "Data storage",
+      "Security",
+      "Backup speed"
+    ],
+    "options": [
+      "Security",
+      "Data storage",
+      "Backup speed",
+      "Query performance"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "A clustered index:",
+    "correct_answer": "Sorts data physically on disk",
+    "incorrect_answers": [
+      "Creates a separate structure",
+      "Has no effect",
+      "Deletes duplicates"
+    ],
+    "options": [
+      "Creates a separate structure",
+      "Has no effect",
+      "Deletes duplicates",
+      "Sorts data physically on disk"
+    ]
+  },
+  {
+    "category": "DATABASE MANAGEMENT SYSTEM",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which command is used to create an index?",
+    "correct_answer": "CREATE INDEX",
+    "incorrect_answers": [
+      "ADD INDEX",
+      "SET INDEX",
+      "BUILD INDEX"
+    ],
+    "options": [
+      "ADD INDEX",
+      "SET INDEX",
+      "CREATE INDEX",
+      "BUILD INDEX"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "PHP stands for:",
+    "correct_answer": "PHP Hypertext Preprocessor",
+    "incorrect_answers": [
+      "Private Host Protocol",
+      "Public Hypertext Page",
+      "None of the above"
+    ],
+    "options": [
+      "Public Hypertext Page",
+      "None of the above",
+      "Private Host Protocol",
+      "PHP Hypertext Preprocessor"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which superglobal is used to collect form data sent via POST?",
+    "correct_answer": "$_POST",
+    "incorrect_answers": [
+      "$_GET",
+      "$_SESSION",
+      "$_COOKIE"
+    ],
+    "options": [
+      "$_SESSION",
+      "$_POST",
+      "$_GET",
+      "$_COOKIE"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The header() function in PHP is used to:",
+    "correct_answer": "Send raw HTTP headers",
+    "incorrect_answers": [
+      "Create HTML headers",
+      "Style pages",
+      "Connect to database"
+    ],
+    "options": [
+      "Style pages",
+      "Send raw HTTP headers",
+      "Create HTML headers",
+      "Connect to database"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which function starts a session in PHP?",
+    "correct_answer": "session_start()",
+    "incorrect_answers": [
+      "session_begin()",
+      "start_session()",
+      "begin_session()"
+    ],
+    "options": [
+      "session_begin()",
+      "start_session()",
+      "begin_session()",
+      "session_start()"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "setcookie() in PHP is used to:",
+    "correct_answer": "Send a cookie to the client",
+    "incorrect_answers": [
+      "Read cookies",
+      "Delete sessions",
+      "Encrypt data"
+    ],
+    "options": [
+      "Encrypt data",
+      "Send a cookie to the client",
+      "Read cookies",
+      "Delete sessions"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "JavaScript is a:",
+    "correct_answer": "Interpreted language",
+    "incorrect_answers": [
+      "Compiled language",
+      "Assembly language",
+      "None of the above"
+    ],
+    "options": [
+      "Assembly language",
+      "Interpreted language",
+      "None of the above",
+      "Compiled language"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which method is used to find an HTML element by its id?",
+    "correct_answer": "getElementById()",
+    "incorrect_answers": [
+      "getElement()",
+      "findById()",
+      "selectElement()"
+    ],
+    "options": [
+      "getElement()",
+      "getElementById()",
+      "findById()",
+      "selectElement()"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "addEventListener() is used to:",
+    "correct_answer": "Attach event handlers to elements",
+    "incorrect_answers": [
+      "Create elements",
+      "Remove elements",
+      "Style elements"
+    ],
+    "options": [
+      "Attach event handlers to elements",
+      "Create elements",
+      "Style elements",
+      "Remove elements"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "JSON.parse() converts:",
+    "correct_answer": "A JSON string to a JavaScript object",
+    "incorrect_answers": [
+      "Object to string",
+      "Array to string",
+      "None of the above"
+    ],
+    "options": [
+      "None of the above",
+      "Array to string",
+      "A JSON string to a JavaScript object",
+      "Object to string"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which keyword declares a constant in JavaScript?",
+    "correct_answer": "const",
+    "incorrect_answers": [
+      "var",
+      "let",
+      "static"
+    ],
+    "options": [
+      "var",
+      "static",
+      "let",
+      "const"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "XML stands for:",
+    "correct_answer": "Extensible Markup Language",
+    "incorrect_answers": [
+      "Extra Modern Language",
+      "Extended Machine Logic",
+      "None of the above"
+    ],
+    "options": [
+      "None of the above",
+      "Extensible Markup Language",
+      "Extra Modern Language",
+      "Extended Machine Logic"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "XML is primarily used for:",
+    "correct_answer": "Data storage and transport",
+    "incorrect_answers": [
+      "Styling web pages",
+      "Database management",
+      "Image processing"
+    ],
+    "options": [
+      "Data storage and transport",
+      "Database management",
+      "Image processing",
+      "Styling web pages"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "DOM stands for:",
+    "correct_answer": "Document Object Model",
+    "incorrect_answers": [
+      "Data Output Module",
+      "Dynamic Object Method",
+      "None of the above"
+    ],
+    "options": [
+      "Document Object Model",
+      "None of the above",
+      "Data Output Module",
+      "Dynamic Object Method"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "A well-formed XML document must have:",
+    "correct_answer": "A single root element",
+    "incorrect_answers": [
+      "Multiple root elements",
+      "No closing tags",
+      "Only attributes"
+    ],
+    "options": [
+      "A single root element",
+      "Only attributes",
+      "Multiple root elements",
+      "No closing tags"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "DTD in XML is used for:",
+    "correct_answer": "Defining document structure and rules",
+    "incorrect_answers": [
+      "Styling",
+      "Animation",
+      "Scripting"
+    ],
+    "options": [
+      "Animation",
+      "Scripting",
+      "Styling",
+      "Defining document structure and rules"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "AJAX stands for:",
+    "correct_answer": "Asynchronous JavaScript and XML",
+    "incorrect_answers": [
+      "Advanced Java and XML",
+      "Automated JSON and XHTML",
+      "None of the above"
+    ],
+    "options": [
+      "Automated JSON and XHTML",
+      "Asynchronous JavaScript and XML",
+      "Advanced Java and XML",
+      "None of the above"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "AJAX allows web pages to:",
+    "correct_answer": "Update content without full page reload",
+    "incorrect_answers": [
+      "Reload completely",
+      "Block user input",
+      "Only display images"
+    ],
+    "options": [
+      "Block user input",
+      "Update content without full page reload",
+      "Reload completely",
+      "Only display images"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "XMLHttpRequest object is used to:",
+    "correct_answer": "Exchange data with a server asynchronously",
+    "incorrect_answers": [
+      "Style pages",
+      "Create databases",
+      "Parse CSS"
+    ],
+    "options": [
+      "Create databases",
+      "Style pages",
+      "Exchange data with a server asynchronously",
+      "Parse CSS"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which readyState value indicates the AJAX request is complete?",
+    "correct_answer": "4",
+    "incorrect_answers": [
+      "0",
+      "1",
+      "3"
+    ],
+    "options": [
+      "4",
+      "1",
+      "0",
+      "3"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The fetch() API is a modern alternative to:",
+    "correct_answer": "XMLHttpRequest",
+    "incorrect_answers": [
+      "DOM manipulation",
+      "setTimeout",
+      "localStorage"
+    ],
+    "options": [
+      "localStorage",
+      "setTimeout",
+      "XMLHttpRequest",
+      "DOM manipulation"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Node.js runs JavaScript on:",
+    "correct_answer": "Server side",
+    "incorrect_answers": [
+      "Browser only",
+      "Database",
+      "None of the above"
+    ],
+    "options": [
+      "None of the above",
+      "Browser only",
+      "Server side",
+      "Database"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Node.js is built on:",
+    "correct_answer": "V8 JavaScript engine",
+    "incorrect_answers": [
+      "Python engine",
+      "Java Virtual Machine",
+      ".NET framework"
+    ],
+    "options": [
+      "Python engine",
+      "Java Virtual Machine",
+      ".NET framework",
+      "V8 JavaScript engine"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "npm stands for:",
+    "correct_answer": "Node Package Manager",
+    "incorrect_answers": [
+      "New Project Module",
+      "Network Protocol Manager",
+      "None of the above"
+    ],
+    "options": [
+      "New Project Module",
+      "Node Package Manager",
+      "Network Protocol Manager",
+      "None of the above"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which module is used to create an HTTP server in Node.js?",
+    "correct_answer": "http",
+    "incorrect_answers": [
+      "fs",
+      "path",
+      "url"
+    ],
+    "options": [
+      "fs",
+      "url",
+      "http",
+      "path"
+    ]
+  },
+  {
+    "category": "ADVANCED WEB TECHNOLOGY",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Express.js is:",
+    "correct_answer": "A web framework for Node.js",
+    "incorrect_answers": [
+      "A database",
+      "A browser",
+      "An operating system"
+    ],
+    "options": [
+      "An operating system",
+      "A web framework for Node.js",
+      "A browser",
+      "A database"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "An operating system is:",
+    "correct_answer": "Software that manages hardware and software resources",
+    "incorrect_answers": [
+      "Hardware",
+      "A compiler",
+      "A network"
+    ],
+    "options": [
+      "A network",
+      "Software that manages hardware and software resources",
+      "A compiler",
+      "Hardware"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which is NOT a type of operating system?",
+    "correct_answer": "Compiler OS",
+    "incorrect_answers": [
+      "Batch OS",
+      "Real-time OS",
+      "Distributed OS"
+    ],
+    "options": [
+      "Real-time OS",
+      "Compiler OS",
+      "Batch OS",
+      "Distributed OS"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The kernel is:",
+    "correct_answer": "The core of the operating system",
+    "incorrect_answers": [
+      "An application",
+      "A user interface",
+      "A file type"
+    ],
+    "options": [
+      "The core of the operating system",
+      "An application",
+      "A file type",
+      "A user interface"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "A microkernel architecture:",
+    "correct_answer": "Keeps minimal functions in the kernel",
+    "incorrect_answers": [
+      "Includes all services in the kernel",
+      "Has no kernel",
+      "Is not used today"
+    ],
+    "options": [
+      "Has no kernel",
+      "Keeps minimal functions in the kernel",
+      "Includes all services in the kernel",
+      "Is not used today"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "System calls provide an interface between:",
+    "correct_answer": "User programs and the operating system",
+    "incorrect_answers": [
+      "Hardware and firmware",
+      "Two networks",
+      "Two databases"
+    ],
+    "options": [
+      "Two databases",
+      "Two networks",
+      "Hardware and firmware",
+      "User programs and the operating system"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "A process in an OS is:",
+    "correct_answer": "A program in execution",
+    "incorrect_answers": [
+      "A stored file",
+      "A hardware device",
+      "An interrupt"
+    ],
+    "options": [
+      "A program in execution",
+      "An interrupt",
+      "A hardware device",
+      "A stored file"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which scheduling algorithm gives the minimum average waiting time?",
+    "correct_answer": "SJF (Shortest Job First)",
+    "incorrect_answers": [
+      "FCFS",
+      "Round Robin",
+      "Priority"
+    ],
+    "options": [
+      "SJF (Shortest Job First)",
+      "Priority",
+      "FCFS",
+      "Round Robin"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Round Robin scheduling uses:",
+    "correct_answer": "Time quantum",
+    "incorrect_answers": [
+      "Priority levels",
+      "Shortest burst",
+      "Longest burst"
+    ],
+    "options": [
+      "Shortest burst",
+      "Longest burst",
+      "Priority levels",
+      "Time quantum"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Context switching involves:",
+    "correct_answer": "Saving and loading process states",
+    "incorrect_answers": [
+      "Switching between users",
+      "Changing OS version",
+      "Switching networks"
+    ],
+    "options": [
+      "Switching networks",
+      "Switching between users",
+      "Changing OS version",
+      "Saving and loading process states"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Starvation in CPU scheduling means:",
+    "correct_answer": "A process waits indefinitely",
+    "incorrect_answers": [
+      "A process runs too fast",
+      "All processes complete",
+      "CPU is idle"
+    ],
+    "options": [
+      "All processes complete",
+      "A process runs too fast",
+      "A process waits indefinitely",
+      "CPU is idle"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "A critical section is:",
+    "correct_answer": "Code that accesses shared resources",
+    "incorrect_answers": [
+      "The entire program",
+      "The main function",
+      "An error handler"
+    ],
+    "options": [
+      "Code that accesses shared resources",
+      "The entire program",
+      "The main function",
+      "An error handler"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "A semaphore is:",
+    "correct_answer": "A synchronization tool",
+    "incorrect_answers": [
+      "A hardware device",
+      "A type of process",
+      "An algorithm"
+    ],
+    "options": [
+      "A hardware device",
+      "An algorithm",
+      "A synchronization tool",
+      "A type of process"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Mutex stands for:",
+    "correct_answer": "Mutual Exclusion",
+    "incorrect_answers": [
+      "Multiple Execution",
+      "Multi User Text",
+      "None of the above"
+    ],
+    "options": [
+      "Multiple Execution",
+      "Multi User Text",
+      "Mutual Exclusion",
+      "None of the above"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The producer-consumer problem involves:",
+    "correct_answer": "Synchronizing shared buffer access",
+    "incorrect_answers": [
+      "CPU scheduling",
+      "Memory allocation",
+      "Disk management"
+    ],
+    "options": [
+      "Memory allocation",
+      "Synchronizing shared buffer access",
+      "CPU scheduling",
+      "Disk management"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The dining philosophers problem illustrates:",
+    "correct_answer": "Resource allocation and deadlock",
+    "incorrect_answers": [
+      "CPU scheduling",
+      "Memory leaks",
+      "File management"
+    ],
+    "options": [
+      "Memory leaks",
+      "File management",
+      "Resource allocation and deadlock",
+      "CPU scheduling"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Deadlock occurs when:",
+    "correct_answer": "Processes wait for each other indefinitely",
+    "incorrect_answers": [
+      "CPU is idle",
+      "Memory is full",
+      "Disk fails"
+    ],
+    "options": [
+      "CPU is idle",
+      "Processes wait for each other indefinitely",
+      "Memory is full",
+      "Disk fails"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which is NOT a necessary condition for deadlock?",
+    "correct_answer": "Preemption",
+    "incorrect_answers": [
+      "Mutual Exclusion",
+      "Hold and Wait",
+      "Circular Wait"
+    ],
+    "options": [
+      "Hold and Wait",
+      "Circular Wait",
+      "Preemption",
+      "Mutual Exclusion"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Banker's algorithm is used for:",
+    "correct_answer": "Deadlock avoidance",
+    "incorrect_answers": [
+      "Memory management",
+      "CPU scheduling",
+      "File management"
+    ],
+    "options": [
+      "Deadlock avoidance",
+      "File management",
+      "Memory management",
+      "CPU scheduling"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Deadlock prevention works by:",
+    "correct_answer": "Negating one or more necessary conditions",
+    "incorrect_answers": [
+      "Detecting deadlocks after they occur",
+      "Ignoring deadlocks",
+      "Restarting the system"
+    ],
+    "options": [
+      "Restarting the system",
+      "Negating one or more necessary conditions",
+      "Detecting deadlocks after they occur",
+      "Ignoring deadlocks"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Resource Allocation Graph is used to:",
+    "correct_answer": "Detect deadlocks",
+    "incorrect_answers": [
+      "Allocate memory",
+      "Schedule processes",
+      "Manage files"
+    ],
+    "options": [
+      "Schedule processes",
+      "Detect deadlocks",
+      "Manage files",
+      "Allocate memory"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "FCFS disk scheduling serves requests in:",
+    "correct_answer": "Order of arrival",
+    "incorrect_answers": [
+      "Shortest seek first",
+      "Random order",
+      "Priority order"
+    ],
+    "options": [
+      "Priority order",
+      "Order of arrival",
+      "Random order",
+      "Shortest seek first"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "SSTF disk scheduling selects the request with:",
+    "correct_answer": "Shortest seek time",
+    "incorrect_answers": [
+      "Longest seek time",
+      "Random seek",
+      "Priority seek"
+    ],
+    "options": [
+      "Shortest seek time",
+      "Random seek",
+      "Priority seek",
+      "Longest seek time"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "SCAN disk scheduling is also called:",
+    "correct_answer": "Elevator algorithm",
+    "incorrect_answers": [
+      "FIFO",
+      "Round Robin",
+      "Priority scheduling"
+    ],
+    "options": [
+      "Priority scheduling",
+      "Round Robin",
+      "Elevator algorithm",
+      "FIFO"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Virtual memory uses:",
+    "correct_answer": "Disk space as extended memory",
+    "incorrect_answers": [
+      "Only RAM",
+      "Cache only",
+      "Registers"
+    ],
+    "options": [
+      "Disk space as extended memory",
+      "Registers",
+      "Only RAM",
+      "Cache only"
+    ]
+  },
+  {
+    "category": "OPERATING SYSTEMS",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Page replacement algorithms include:",
+    "correct_answer": "All of the above",
+    "incorrect_answers": [
+      "FIFO",
+      "LRU",
+      "Optimal"
+    ],
+    "options": [
+      "Optimal",
+      "All of the above",
+      "FIFO",
+      "LRU"
+    ]
+  }
+]

@@ -1,0 +1,100 @@
+@import url(../node_modules/semantic-ui-css/semantic.min.css);
+
+/* Vibrant Background */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #1a1a2e 75%, #16213e 100%);
+    background-attachment: fixed;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+/* Alternative vibrant gradient */
+.vibrant-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Primary theme colors */
+:root {
+    --primary-blue: #007BFF;
+    --primary-blue-dark: #0056b3;
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+/* Semantic UI Overrides for dark theme */
+.ui.segment {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: white !important;
+}
+
+.ui.segment p,
+.ui.segment .item .meta,
+.ui.segment .item .header h1,
+.ui.segment .item .extra {
+    color: white !important;
+}
+
+.ui.items > .item > .content > .header {
+    color: white !important;
+}
+
+.ui.divider {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.ui.header, .ui.statistic > .value, .ui.statistic > .label {
+    color: white !important;
+}
+
+.ui.form .field > label {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Dropdown menu styling */
+.ui.menu .dropdown.item .menu {
+    background: rgba(30, 30, 40, 0.95) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.ui.menu .dropdown.item .menu > .item {
+    color: white !important;
+}
+
+.ui.menu .dropdown.item .menu > .item:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Fix modal form labels: dark text on white modal background */
+.ui.modal .ui.form .field > label {
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.ui.modal .ui.header {
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+
+/* Result section: dark text on white segment background */
+.result-section .ui.segment {
+    background: #fff !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #333 !important;
+}
+
+.result-section .ui.segment p,
+.result-section .ui.header {
+    color: #333 !important;
+}
+
+.result-section .ui.table th,
+.result-section .ui.table td {
+    color: #333 !important;
+}
+
+.result-section .ui.menu .item {
+    color: #333 !important;
+}
