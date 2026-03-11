@@ -16,17 +16,23 @@ A robust **MERN stack** (MongoDB, Express, React, Node.js) application featuring
 
 ### 🧠 Quiz App & Anti-Cheat Features
 - **Real-Time Event Monitoring**: Detects tab switching (visibilitychange) and window minimizing (blur)
-- **3-Strike Enforcement**: Automatically logs out any student who commits three integrity violations during a live quiz
-- **Post-Violation Lockdown**: Sets a cheatedFlag in the database, requiring the student to acknowledge a warning modal before accessing the system again
+- **Admin-Mediated 3-Strike System**: When a student commits 3 integrity violations, an admin instantly receives a real-time modal on the dashboard (WebSocket-powered)
+- **10-Second Approval Countdown**: Admin has 10 seconds to make a decision (Block or Allow). Auto-blocks by default if admin doesn't respond
+- **Dual Approval Paths**: 
+  - **Block**: Student account is locked, receives forceLogout notification
+  - **Allow**: Student receives approval notification and can continue quiz
+- **Status Tracking**: SuspiciousActivity records track decision status (pending_admin, blocked, approved) with admin decision timestamps
 - **Live Quiz Timer**: Real-time countdown with auto-submit functionality
 - **Question Randomization**: Shuffled questions and answer options for each student
 - **Detailed Result Analytics**: Score breakdown, grade calculation, and performance statistics
 
 ### 👨‍💼 Admin Management
 - **System-Wide Dashboard**: View Total Users and Active Students at a glance
+- **Real-Time Violation Alerts**: Instant modal notification when student reaches 3 strikes with auto-block countdown
+- **Quick-Decision Interface**: One-click Block or Allow buttons with clear visual feedback
 - **User Management**: Integrated controls for editing, locking, or permanently deleting user accounts
-- **Security Auditing**: Review detailed logs of student behavior and clear "cheated" statuses after moderation
-- **Suspicious Activity Monitor**: Real-time dashboard showing violation counts and activity types
+- **Security Auditing**: Review detailed logs of student behavior with decision status, timestamps, and approver information
+- **Suspicious Activity Monitor**: Real-time dashboard showing violation counts, activity types, and approval status
 - **Quiz Management**: Create, edit, and manage quiz questions and difficulty levels
 
 ---
@@ -37,6 +43,7 @@ A robust **MERN stack** (MongoDB, Express, React, Node.js) application featuring
 |-------|-----------|
 | **Frontend** | React.js, Semantic UI React, React Toastify, CSS3 |
 | **Backend** | Node.js, Express.js (RESTful APIs) |
+| **Real-Time Communication** | Socket.io (WebSocket) for instant admin alerts |
 | **Database** | MongoDB with Mongoose ODM |
 | **Authentication** | JSON Web Tokens (JWT), bcrypt hashing |
 | **Email Service** | Nodemailer (Password Reset) |
@@ -123,7 +130,12 @@ Follow these steps to set up the Simple User Authentication System & CDS Quiz Ap
 
 ### 🛡️ Post-Installation Verification
 - **Check Admin Login**: Use your admin credentials to verify the User Credentials panel and the eye-toggle feature.
-- **Test Anti-Cheat**: Attempt a tab-switch during a student quiz to verify the `suspiciousCount` is recording correctly in the Suspicious Activity Monitor.
+- **Test Admin Alert Flow**: 
+  1. Have a student open the quiz
+  2. Trigger 3 violations (tab-switch 3 times)
+  3. Admin should see a modal pop-up with countdown
+  4. Admin clicks Block or Allow to test the decision flow
+- **Test Decision Notifications**: Verify the student receives the correct notification (logged out or approved)
 
 ---
 
@@ -248,8 +260,11 @@ npm run dev
 | GET | `/users` | Get all users |
 | PUT | `/users/:id` | Update user details |
 | DELETE | `/users/:id` | Delete user account |
-| GET | `/suspicious-activity` | Get activity logs |
-| PUT | `/clear-cheat-flag/:id` | Clear cheated flag |
+| GET | `/suspicious-activities` | Get aggregated activity logs |
+| PUT | `/suspicious-activities/:activityId/decide` | Admin approval/block decision (block \| approve) |
+| PUT | `/users/:id/block` | Block a user account |
+| PUT | `/users/:id/unblock` | Unblock a user account |
+| PUT | `/users/:id/reset-cheat-flag` | Clear cheated flag |
 
 ### Quiz Routes (`/api/teacher`)
 | Method | Endpoint | Description |
@@ -277,8 +292,11 @@ npm run dev
 ### Academic Integrity
 - ✅ Real-time tab switching detection
 - ✅ Window blur/focus monitoring
-- ✅ 3-strike violation lockout system
-- ✅ Detailed activity logging and auditing
+- ✅ 3-strike violation system with admin review
+- ✅ Admin-mediated approval flow with WebSocket notifications
+- ✅ Auto-block default on admin timeout (10 seconds)
+- ✅ Detailed activity logging with decision tracking and timestamps
+- ✅ Real-time student notification of admin decisions
 
 ### Database Security
 - ✅ Cascade deletion for data cleanup
@@ -300,8 +318,11 @@ npm run dev
 - 👥 Manage user accounts (create, edit, delete)
 - 👁️ View student passwords with permission toggle
 - 📋 Monitor suspicious activity in real-time
+- ⚡ Receive instant alert modals when students reach 3 strikes
+- ⏱️ Make quick block/approve decisions with 10-second countdown
 - 🚫 Lock accounts or clear violation flags
-- 📈 View system-wide statistics
+- 📊 Review decision history with timestamps and approver info
+- 📈 View system-wide statistics and audit trails
 
 ---
 
