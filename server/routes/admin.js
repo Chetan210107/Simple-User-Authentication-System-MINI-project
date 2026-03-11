@@ -12,7 +12,8 @@ const {
     resetCheatedFlag,
     getSuspiciousActivities,
     deleteSuspiciousActivities,
-    deleteSuspiciousActivityRecord
+    deleteSuspiciousActivityRecord,
+    decideSuspiciousActivity
 } = require('../controllers/admin');
 
 // @route   GET api/admin/users
@@ -69,5 +70,10 @@ router.delete('/suspicious-activity/:id', protect, authorize('Admin'), deleteSus
 // @desc    Reset a student's cheat flag
 // @access  Private (Admin)
 router.put('/users/:id/reset-cheat-flag', protect, authorize('Admin'), resetCheatedFlag);
+
+// @route   PUT api/admin/suspicious-activities/:activityId/decide
+// @desc    Admin approval or block decision for suspicious activity
+// @access  Private (Admin)
+router.put('/suspicious-activities/:activityId/decide', protect, authorize('Admin'), decideSuspiciousActivity);
 
 module.exports = router;

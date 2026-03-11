@@ -27,6 +27,7 @@ const Quiz = ({ data, countdownTime, endQuiz, resetQuiz }) => {
   const [timeTaken, setTimeTaken] = useState(null);
   const [warningOpen, setWarningOpen] = useState(false);
   const [warningCount, setWarningCount] = useState(0);
+  const [awaitingAdminDecision, setAwaitingAdminDecision] = useState(false);
 
   const suspiciousCountRef = useRef(0);
   const lastReportTimeRef = useRef(0);
@@ -34,7 +35,7 @@ const Quiz = ({ data, countdownTime, endQuiz, resetQuiz }) => {
   const SUSPICIOUS_THRESHOLD = 3;
   const DEBOUNCE_MS = 2000;
 
-  const { user } = useUser();
+  const { user, socket } = useUser();
 
   const handleImmediateLogout = useCallback(() => {
     // Prevent multiple logout attempts
@@ -74,10 +75,13 @@ const Quiz = ({ data, countdownTime, endQuiz, resetQuiz }) => {
       body: JSON.stringify({ activityType: type }),
     }).catch(console.error);
 
-    // Auto-logout immediately when threshold reached (for Students only)
+    // When threshold reached, wait for admin decision (do NOT auto-logout)
     if (currentCount >= SUSPICIOUS_THRESHOLD) {
       if (user && user.role === 'Student') {
-        handleImmediateLogout();
+        setAwaitingAdminDecision(true);
+        toast.warning(
+          'Suspicious activity threshold reached. Awaiting admin decision...'
+        );
       }
     } else {
       setWarningOpen(true);
@@ -85,7 +89,7 @@ const Quiz = ({ data, countdownTime, endQuiz, resetQuiz }) => {
         `Suspicious activity detected (${currentCount}/${SUSPICIOUS_THRESHOLD}).`
       );
     }
-  }, [user, handleImmediateLogout]);
+  }, [user]);
 
   // Cheating detection: tab switch, window blur
   useEffect(() => {
@@ -114,6 +118,32 @@ const Quiz = ({ data, countdownTime, endQuiz, resetQuiz }) => {
       window.removeEventListener('blur', handleBlur);
     };
   }, [reportActivity, user]);
+
+  // Listen for admin approval/block decision
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on('forceLogout', (data) => {
+      loggedOutRef.current = true;
+      setAwaitingAdminDecision(false);
+      localStorage.setItem('cheatingLogout', 'true');
+      localStorage.removeItem('token');
+      toast.error(data.msg || 'Your account has been blocked due to suspicious activity.');
+      setTimeout(() => {
+        window.location.href = '/login';
+      }, 500);
+    });
+
+    socket.on('suspicionApproved', (data) => {
+      setAwaitingAdminDecision(false);
+      toast.success(data.msg || 'Admin has approved. You may continue with the quiz.');
+    });
+
+    return () => {
+      socket.off('forceLogout');
+      socket.off('suspicionApproved');
+    };
+  }, [socket]);
 
   useEffect(() => {
     if (questionIndex > 0) window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -257,6 +287,21 @@ const Quiz = ({ data, countdownTime, endQuiz, resetQuiz }) => {
         </Segment>
         <br />
       </Container>
+
+      {/* Admin Decision Modal */}
+      <Modal open={awaitingAdminDecision} size="small" onClose={() => {}} closeIcon={false}>
+        <Modal.Header>
+          <Icon name="hourglass half" loading /> Awaiting Admin Decision
+        </Modal.Header>
+        <Modal.Content>
+          <p>
+            You have exceeded the suspicious activity threshold. An administrator is reviewing your case.
+          </p>
+          <p style={{ color: '#ff6b6b', fontWeight: 'bold' }}>
+            Please wait while the admin decides whether to block or allow your continuation...
+          </p>
+        </Modal.Content>
+      </Modal>
     </Item.Header>
   );
 };

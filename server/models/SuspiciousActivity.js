@@ -14,6 +14,16 @@ const suspiciousActivitySchema = new mongoose.Schema({
     timestamp: {
         type: Date,
         default: Date.now
+    },
+    status: {
+        type: String,
+        enum: ['pending_admin', 'blocked', 'approved'],
+        default: 'pending_admin'
+    },
+    adminDecisionTime: Date,
+    adminDecisionBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 

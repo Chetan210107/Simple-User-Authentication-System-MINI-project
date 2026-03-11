@@ -202,6 +202,7 @@ exports.reportSuspiciousActivity = async (req, res) => {
         const activity = new SuspiciousActivity({
             userId: req.user._id,
             activityType,
+            status: 'pending_admin'
         });
         await activity.save();
 
@@ -211,19 +212,16 @@ exports.reportSuspiciousActivity = async (req, res) => {
         // Notify admins in real-time if threshold exceeded
         const THRESHOLD = 3;
         if (count >= THRESHOLD && req.io) {
-            await User.findByIdAndUpdate(req.user._id, { cheatedFlag: true });
-
-            const socketId = req.userSockets && req.userSockets[req.user._id.toString()];
-            if (socketId) {
-                req.io.to(socketId).emit('forceLogout', { msg: 'You have been automatically logged out due to suspicious activity.' });
-            }
-
+            // Do NOT auto-logout: await admin approval instead
+            const user = await User.findById(req.user._id);
             req.io.to('Admin').emit('suspiciousAlert', {
                 userId: req.user._id,
-                userName: `${req.user.firstName} ${req.user.lastName}`,
+                userName: `${user.firstName} ${user.lastName}`,
                 count,
                 activityType,
                 timestamp: activity.timestamp,
+                status: 'pending_admin',
+                activityId: activity._id
             });
         }
 

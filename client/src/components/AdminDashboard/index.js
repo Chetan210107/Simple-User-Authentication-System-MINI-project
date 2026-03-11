@@ -42,6 +42,9 @@ const AdminDashboard = () => {
   });
   const [suspiciousActivities, setSuspiciousActivities] = useState([]);
   const [showPasswords, setShowPasswords] = useState({});
+  const [approvalModalOpen, setApprovalModalOpen] = useState(false);
+  const [pendingApprovalData, setPendingApprovalData] = useState(null);
+  const [countdown, setCountdown] = useState(10);
 
   const togglePasswordVisibility = (userId) => {
     setShowPasswords((prev) => ({ ...prev, [userId]: !prev[userId] }));
@@ -61,7 +64,14 @@ const AdminDashboard = () => {
         setActiveStudentCount(count);
       });
       socket.on('suspiciousAlert', (newActivity) => {
-        toast.warn(`Suspicious activity from ${newActivity.userName}!`);
+        // If critical alert (3+ violations), open approval modal
+        if (newActivity.count >= 3 && newActivity.status === 'pending_admin') {
+          setPendingApprovalData(newActivity);
+          setApprovalModalOpen(true);
+          setCountdown(10);
+        } else {
+          toast.warn(`Suspicious activity from ${newActivity.userName}!`);
+        }
         // Add or update the activity in the list
         setSuspiciousActivities(prevActivities => {
           const existingIndex = prevActivities.findIndex(a => a.userId === newActivity.userId);
@@ -79,6 +89,54 @@ const AdminDashboard = () => {
       }
     }
   }, [socket]);
+
+  // Countdown timer for auto-block on timeout
+  useEffect(() => {
+    if (!approvalModalOpen || !pendingApprovalData) return;
+
+    if (countdown <= 0) {
+      // Auto-block by default if admin doesn't respond
+      handleApprovalDecision('block', true);
+      return;
+    }
+
+    const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [countdown, approvalModalOpen, pendingApprovalData]);
+
+  const handleApprovalDecision = async (decision, isAutomatic = false) => {
+    if (!pendingApprovalData || !pendingApprovalData.activityId) {
+      toast.error('Invalid activity data');
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/admin/suspicious-activities/${pendingApprovalData.activityId}/decide`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-auth-token': token,
+        },
+        body: JSON.stringify({ decision }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        if (decision === 'block') {
+          toast.error(`Student ${pendingApprovalData.userName} has been blocked${isAutomatic ? ' (auto-block timeout)' : ''}`);
+        } else {
+          toast.success(`Student ${pendingApprovalData.userName} approved to continue`);
+        }
+        setApprovalModalOpen(false);
+        setPendingApprovalData(null);
+        setCountdown(10);
+      } else {
+        toast.error(data.msg || `Failed to ${decision} student`);
+      }
+    } catch (err) {
+      toast.error(`Failed to process decision: ${err.message}`);
+    }
+  };
 
   const fetchSuspiciousActivities = async () => {
     try {
@@ -686,6 +744,32 @@ const AdminDashboard = () => {
         onCancel={() => setConfirmStopOpen(false)}
         onConfirm={handleGlobalStop}
       />
+
+      {/* Admin Approval Modal for Suspicious Activity */}
+      <Modal open={approvalModalOpen} onClose={() => { setApprovalModalOpen(false); setPendingApprovalData(null); }} size="small" centered={false}>
+        <Modal.Header>
+          <Icon name="warning" color="red" /> Suspicious Activity Alert
+        </Modal.Header>
+        <Modal.Content>
+          {pendingApprovalData && (
+            <>
+              <p><strong>Student:</strong> {pendingApprovalData.userName}</p>
+              <p><strong>Violation Count:</strong> {pendingApprovalData.count} strikes</p>
+              <p><strong>Activity Type:</strong> {pendingApprovalData.activityType}</p>
+              <p style={{ color: '#ff6b6b', fontWeight: 'bold' }}>
+                Auto-block in: <span style={{ fontSize: '1.5rem' }}>{countdown}s</span>
+              </p>
+              <p style={{ marginTop: '1rem', color: '#ffd93d' }}>
+                <Icon name="info circle" /> Admin must act within 10 seconds or student will be automatically blocked.
+              </p>
+            </>
+          )}
+        </Modal.Content>
+        <Modal.Actions>
+          <Button negative icon="ban" labelPosition="right" content="Block Student" onClick={() => handleApprovalDecision('block')} />
+          <Button positive icon="check circle" labelPosition="right" content="Allow to Continue" onClick={() => handleApprovalDecision('approve')} />
+        </Modal.Actions>
+      </Modal>
     </Container>
   );
 };

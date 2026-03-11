@@ -196,3 +196,62 @@ exports.resetCheatedFlag = async (req, res) => {
         res.status(500).send('Server error');
     }
 };
+
+// @desc    Admin approval/block decision for suspicious activity
+// @route   PUT /api/admin/suspicious-activities/:activityId/decide
+// @access  Private (Admin only)
+exports.decideSuspiciousActivity = async (req, res) => {
+    const { activityId } = req.params;
+    const { decision } = req.body; // 'block' or 'approve'
+    const { io, userSockets } = req;
+
+    try {
+        const activity = await SuspiciousActivity.findById(activityId);
+        if (!activity) {
+            return res.status(404).json({ msg: 'Activity not found' });
+        }
+
+        const studentId = activity.userId.toString();
+        const studentSocketId = userSockets && userSockets[studentId];
+
+        if (decision === 'block') {
+            // Block student
+            await User.findByIdAndUpdate(studentId, { isBlocked: true });
+            await SuspiciousActivity.findByIdAndUpdate(activityId, {
+                status: 'blocked',
+                adminDecisionTime: new Date(),
+                adminDecisionBy: req.user._id
+            });
+
+            // Notify student of block
+            if (studentSocketId && io) {
+                io.to(studentSocketId).emit('forceLogout', {
+                    msg: 'Your account has been blocked due to violation of academic integrity policy.'
+                });
+            }
+
+            res.json({ msg: 'Student blocked successfully' });
+        } else if (decision === 'approve') {
+            // Approve continuation
+            await SuspiciousActivity.findByIdAndUpdate(activityId, {
+                status: 'approved',
+                adminDecisionTime: new Date(),
+                adminDecisionBy: req.user._id
+            });
+
+            // Notify student of approval
+            if (studentSocketId && io) {
+                io.to(studentSocketId).emit('suspicionApproved', {
+                    msg: 'Admin has approved your continuation. Proceed with the quiz.'
+                });
+            }
+
+            res.json({ msg: 'Student approved to continue' });
+        } else {
+            res.status(400).json({ msg: 'Invalid decision. Must be "block" or "approve"' });
+        }
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
