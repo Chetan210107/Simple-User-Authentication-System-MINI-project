@@ -2,7 +2,7 @@
   "name": "cds-quiz-app",
   "version": "6.0.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:5001",
   "author": {
     "name": "Safdar Jamal",
     "url": "https://safdarjamal.github.io"

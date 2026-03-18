@@ -12,7 +12,6 @@ import {
   Label,
   Confirm,
 } from 'semantic-ui-react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { toast } from 'react-toastify';
 import { useUser } from '../../context/UserContext';
 import { CATEGORIES, DIFFICULTY } from '../../constants';
@@ -45,6 +44,8 @@ const AdminDashboard = () => {
   const [approvalModalOpen, setApprovalModalOpen] = useState(false);
   const [pendingApprovalData, setPendingApprovalData] = useState(null);
   const [countdown, setCountdown] = useState(10);
+  const [categories, setCategories] = useState([]);
+  const [selectedSubject, setSelectedSubject] = useState('');
 
   const togglePasswordVisibility = (userId) => {
     setShowPasswords((prev) => ({ ...prev, [userId]: !prev[userId] }));
@@ -56,7 +57,42 @@ const AdminDashboard = () => {
     fetchUsers();
     fetchQuestions();
     fetchSuspiciousActivities();
+    fetchCategories();
   }, []);
+
+  const fetchCategories = async () => {
+    const normalize = (arr) =>
+      Array.from(new Set((Array.isArray(arr) ? arr : []).map((s) => String(s || '').trim()).filter(Boolean)));
+
+    try {
+      const res = await fetch('/api/questions/categories', {
+        headers: { 'x-auth-token': token },
+      });
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        throw new Error((data && data.msg) || `Failed to fetch categories (${res.status})`);
+      }
+
+      setCategories(normalize(data));
+    } catch (err) {
+      // Fallback to legacy endpoint (same underlying collection distinct('subject'))
+      try {
+        const res2 = await fetch('/api/teacher/questions/subjects', {
+          headers: { 'x-auth-token': token },
+        });
+        const data2 = await res2.json().catch(() => null);
+
+        if (!res2.ok) {
+          throw new Error((data2 && data2.msg) || `Failed to fetch categories (${res2.status})`);
+        }
+
+        setCategories(normalize(data2));
+      } catch (err2) {
+        toast.error(err2.message || err.message || 'Failed to fetch categories');
+      }
+    }
+  };
 
   useEffect(() => {
     if (socket) {
@@ -172,12 +208,13 @@ const AdminDashboard = () => {
       const res = await fetch('/api/teacher/questions', {
         headers: { 'x-auth-token': token },
       });
-      const data = await res.json();
-      if (res.ok) {
-        setQuestions(data.sort((a, b) => a.order - b.order));
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        throw new Error((data && data.msg) || `Failed to fetch questions (${res.status})`);
       }
+      setQuestions((Array.isArray(data) ? data : []).sort((a, b) => (a.order ?? 0) - (b.order ?? 0)));
     } catch (err) {
-      toast.error('Failed to fetch questions');
+      toast.error(err.message || 'Failed to fetch questions');
     } finally {
       setLoading(false);
     }
@@ -365,7 +402,7 @@ const AdminDashboard = () => {
   const handleDeleteQuestion = async (id) => {
     if (!window.confirm('Delete this question?')) return;
     try {
-      const res = await fetch(`/api/teacher/questions/${id}`, {
+      const res = await fetch(`/api/questions/${id}`, {
         method: 'DELETE',
         headers: { 'x-auth-token': token },
       });
@@ -375,27 +412,6 @@ const AdminDashboard = () => {
       }
     } catch (err) {
       toast.error('Failed to delete question');
-    }
-  };
-
-  const handleDragEnd = async (result) => {
-    if (!result.destination) return;
-    const items = Array.from(questions);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    setQuestions(items);
-
-    try {
-      await fetch('/api/teacher/questions/reorder', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-auth-token': token,
-        },
-        body: JSON.stringify({ questionIds: items.map((q) => q._id) }),
-      });
-    } catch (err) {
-      toast.error('Failed to save order');
     }
   };
 
@@ -427,6 +443,10 @@ const AdminDashboard = () => {
     setFormData({ ...formData, options: newOptions });
   };
 
+  const filteredQuestions = selectedSubject
+    ? questions.filter((q) => q.subject === selectedSubject)
+    : questions;
+
   return (
     <Container style={{ padding: '2rem 0' }}>
       <Header as="h1" style={{ color: 'white', marginBottom: '2rem' }}>
@@ -434,7 +454,7 @@ const AdminDashboard = () => {
       </Header>
 
       {/* Stats Cards */}
-      <Grid columns={4} stackable style={{ marginBottom: '2rem' }}>
+      <Grid columns={3} stackable style={{ marginBottom: '2rem' }}>
         <Grid.Column>
           <div className="glass-card" style={{ textAlign: 'center' }}>
             <Statistic inverted>
@@ -448,14 +468,6 @@ const AdminDashboard = () => {
             <Statistic inverted color="green">
               <Statistic.Value>{activeStudentCount}</Statistic.Value>
               <Statistic.Label>Active Students</Statistic.Label>
-            </Statistic>
-          </div>
-        </Grid.Column>
-        <Grid.Column>
-          <div className="glass-card" style={{ textAlign: 'center' }}>
-            <Statistic inverted color="blue">
-              <Statistic.Value>{questions.length}</Statistic.Value>
-              <Statistic.Label>Questions</Statistic.Label>
             </Statistic>
           </div>
         </Grid.Column>
@@ -604,7 +616,21 @@ const AdminDashboard = () => {
 
       {/* Question Management */}
       <div className="glass-card">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <div
+          style={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 2,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '1rem',
+            marginBottom: '1rem',
+            paddingBottom: '0.5rem',
+            background: 'rgba(0,0,0,0.15)',
+            backdropFilter: 'blur(6px)',
+          }}
+        >
           <Header as="h3" style={{ color: 'white', margin: 0 }}>
             <Icon name="question circle" /> Question Management
           </Header>
@@ -613,46 +639,56 @@ const AdminDashboard = () => {
           </Button>
         </div>
 
-        <DragDropContext onDragEnd={handleDragEnd}>
-          <Droppable droppableId="questions">
-            {(provided) => (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
-                {questions.map((q, index) => (
-                  <Draggable key={q._id} draggableId={q._id} index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={{
-                          ...provided.draggableProps.style,
-                          background: snapshot.isDragging ? 'rgba(0, 123, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)',
-                          padding: '1rem',
-                          marginBottom: '0.5rem',
-                          borderRadius: '8px',
-                          border: '1px solid rgba(255, 255, 255, 0.2)',
-                        }}
-                      >
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <div style={{ color: 'white' }}>
-                            <Icon name="bars" style={{ marginRight: '1rem' }} />
-                            <strong>{q.question}</strong>
-                            <Label size="tiny" style={{ marginLeft: '1rem' }}>{q.subject}</Label>
-                          </div>
-                          <div>
-                            <Button size="tiny" icon="edit" onClick={() => openModal(q)} />
-                            <Button size="tiny" icon="trash" color="red" onClick={() => handleDeleteQuestion(q._id)} />
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
+        <Form.Dropdown
+          placeholder="Select Subject"
+          fluid
+          selection
+          inverted
+          menu={{ inverted: true }}
+          options={[
+            { key: 'all', text: 'All Questions', value: '' },
+            ...categories.map((subject) => ({ key: subject, text: subject, value: subject })),
+          ]}
+          value={selectedSubject}
+          onChange={(e, { value }) => setSelectedSubject(value)}
+          style={{
+            marginBottom: '1rem',
+            background: '#1b1c1d',
+            color: 'white',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: 6,
+          }}
+        />
+
+        <Table inverted basic="very" compact>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell width={6}>Question Text</Table.HeaderCell>
+              <Table.HeaderCell width={2}>A</Table.HeaderCell>
+              <Table.HeaderCell width={2}>B</Table.HeaderCell>
+              <Table.HeaderCell width={2}>C</Table.HeaderCell>
+              <Table.HeaderCell width={2}>D</Table.HeaderCell>
+              <Table.HeaderCell>Correct Answer</Table.HeaderCell>
+              <Table.HeaderCell>Actions</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {filteredQuestions.map((q) => (
+              <Table.Row key={q._id}>
+                <Table.Cell>{q.question}</Table.Cell>
+                <Table.Cell>{q.options?.[0] || '-'}</Table.Cell>
+                <Table.Cell>{q.options?.[1] || '-'}</Table.Cell>
+                <Table.Cell>{q.options?.[2] || '-'}</Table.Cell>
+                <Table.Cell>{q.options?.[3] || '-'}</Table.Cell>
+                <Table.Cell>{q.answer}</Table.Cell>
+                <Table.Cell>
+                  <Button size="tiny" icon="edit" onClick={() => openModal(q)} />
+                  <Button size="tiny" icon="trash" color="red" onClick={() => handleDeleteQuestion(q._id)} />
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
       </div>
 
       {/* Question Modal */}

@@ -9,6 +9,12 @@ const Login = () => {
     email: '',
     password: '',
   });
+  const [otpSent, setOtpSent] = useState(false);
+  const [otpExpired, setOtpExpired] = useState(false);
+  const [otpTimer, setOtpTimer] = useState(0);
+  const [otp, setOtp] = useState('');
+  const [sendingOtp, setSendingOtp] = useState(false);
+  const [verifyingOtp, setVerifyingOtp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [cheatedWarning, setCheatedWarning] = useState(false);
   const [warningLoading, setWarningLoading] = useState(false);
@@ -21,6 +27,91 @@ const Login = () => {
 
   const handleChange = (e, { name, value }) => {
     setFormData({ ...formData, [name]: value });
+
+    // If user changes email, reset OTP state
+    if (name === 'email') {
+      setOtpSent(false);
+      setOtp('');
+      setOtpExpired(false);
+      setOtpTimer(0);
+    }
+  };
+
+  React.useEffect(() => {
+    if (!otpSent || otpTimer <= 0) return;
+
+    const interval = setInterval(() => {
+      setOtpTimer(prev => {
+        if (prev <= 1) {
+          setOtpSent(false);
+          setOtpExpired(true);
+          setOtp('');
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [otpSent, otpTimer]);
+
+  const OTP_EXPIRY_SECONDS = 300;
+
+  const handleSendOtp = async () => {
+    setOtpExpired(false);
+    setSendingOtp(true);
+
+    try {
+      const res = await fetch('/api/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        toast.success('OTP sent! Please check your email.');
+        setOtpSent(true);
+        setOtpTimer(OTP_EXPIRY_SECONDS);
+      } else {
+        toast.error(data.msg || 'Could not send OTP');
+      }
+    } catch (err) {
+      toast.error('Server error. Please try again.');
+    } finally {
+      setSendingOtp(false);
+    }
+  };
+
+  const handleVerifyOtp = async () => {
+    setVerifyingOtp(true);
+    try {
+      const res = await fetch('/api/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, otp }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        const token = data.token;
+        setUserToken(token);
+        localStorage.setItem('token', token);
+        await login(token);
+
+        if (data.cheatedFlag === true) {
+          setCheatedWarning(true);
+        } else {
+          window.location.href = '/';
+        }
+      } else {
+        toast.error(data.msg || 'Invalid OTP');
+      }
+    } catch (err) {
+      toast.error('Server error. Please try again.');
+    } finally {
+      setVerifyingOtp(false);
+    }
   };
 
   const handleClearCheatedFlag = async () => {
@@ -73,6 +164,12 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    if (otpSent) {
+      toast.info('Please verify the OTP sent to your email.');
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch('/api/auth/login', {
@@ -132,30 +229,115 @@ const Login = () => {
               required
               style={{ marginBottom: '1rem' }}
             />
-            <Form.Input
-              fluid
-              icon="lock"
-              iconPosition="left"
-              placeholder="Password"
-              name="password"
-              type="password"
-              value={password}
-              onChange={handleChange}
-              required
-              style={{ marginBottom: '1.5rem' }}
-            />
 
-            <Button 
-              fluid 
-              size="large" 
-              loading={loading}
-              disabled={loading}
-              className="primary-blue"
-              style={{ marginBottom: '1rem' }}
-            >
-              <Icon name="sign in" />
-              Login
-            </Button>
+            {!otpExpired ? (
+              <Button
+                fluid
+                type="button"
+                size="large"
+                loading={sendingOtp}
+                disabled={
+                  sendingOtp ||
+                  !email ||
+                  !password ||
+                  (otpSent && otpTimer > 0)
+                }
+                className="secondary"
+                style={{ marginBottom: '1rem' }}
+                onClick={handleSendOtp}
+              >
+                <Icon name="mail" />
+                {otpSent && otpTimer > 0 ? 'Resend OTP (waiting)' : 'Send OTP'}
+              </Button>
+            ) : (
+              <Button
+                fluid
+                type="button"
+                size="large"
+                loading={sendingOtp}
+                disabled={sendingOtp || !email || !password}
+                className="secondary"
+                style={{ marginBottom: '1rem' }}
+                onClick={handleSendOtp}
+              >
+                <Icon name="redo" />
+                Resend OTP
+              </Button>
+            )}
+
+            {otpExpired && (
+              <Message warning content="OTP expired. Please send a new one." />
+            )}
+
+            {otpSent && (
+              <>
+                <Message
+                  info
+                  style={{ marginBottom: '1rem' }}
+                  content={
+                    otpTimer > 0
+                      ? `Check your email for the OTP. Expires in ${Math.floor(
+                          otpTimer / 60
+                        )}:${String(otpTimer % 60).padStart(2, '0')}`
+                      : 'OTP expired. Please request a new one.'
+                  }
+                />
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <Form.Input
+                    fluid
+                    icon="key"
+                    iconPosition="left"
+                    placeholder="Enter OTP"
+                    name="otp"
+                    value={otp}
+                    onChange={(e, { value }) => setOtp(value)}
+                    required
+                    style={{ marginBottom: '1rem' }}
+                  />
+                  <Button
+                    fluid
+                    type="button"
+                    size="large"
+                    loading={verifyingOtp}
+                    disabled={verifyingOtp || !otp}
+                    className="primary-blue"
+                    onClick={handleVerifyOtp}
+                  >
+                    <Icon name="check" />
+                    Verify OTP
+                  </Button>
+                </div>
+              </>
+            )}
+
+            {!otpSent && (
+              <>
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={handleChange}
+                  required
+                  style={{ marginBottom: '1.5rem' }}
+                />
+
+                <Button 
+                  fluid 
+                  size="large" 
+                  loading={loading}
+                  disabled={loading}
+                  className="primary-blue"
+                  style={{ marginBottom: '1rem' }}
+                >
+                  <Icon name="sign in" />
+                  Login
+                </Button>
+              </>
+            )}
             
             <div style={{ textAlign: 'center', marginTop: '1rem' }}>
               <Link to="/forgot-password" style={{ color: 'rgba(255,255,255,0.8)' }}>

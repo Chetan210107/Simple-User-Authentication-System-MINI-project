@@ -1,4 +1,4 @@
-﻿# 🎓 Simple User Authentication System & CDS Quiz App
+# 🎓 Simple User Authentication System & CDS Quiz App
 
 A robust **MERN stack** (MongoDB, Express, React, Node.js) application featuring a highly secure user authentication gateway integrated with a real-time academic integrity monitoring system.
 
@@ -10,9 +10,9 @@ A robust **MERN stack** (MongoDB, Express, React, Node.js) application featuring
 - **JWT-Based Security**: Implements JSON Web Tokens for secure session management and stateless authentication
 - **Per-User Visibility Toggle**: Admins can manage student privacy using a unique "eye" icon to unmask passwords only when necessary
 - **Role-Based Access Control (RBAC)**: Strict separation of privileges between Students and Admins to ensure data integrity
-- **Encrypted Storage**: All user passwords undergo backend hashing before being stored in MongoDB
 - **Cascade Data Purge**: Deleting a user account automatically triggers a full cleanup of all associated sessions and violation logs
 - **Secure Password Reset**: Email-based password recovery with token verification
+- **Student OTP Login (Email)**: Students authenticate via OTP (`/api/auth/send-otp` + `/api/auth/verify-otp`) before receiving a JWT
 
 ### 🧠 Quiz App & Anti-Cheat Features
 - **Real-Time Event Monitoring**: Detects tab switching (visibilitychange) and window minimizing (blur)
@@ -33,7 +33,11 @@ A robust **MERN stack** (MongoDB, Express, React, Node.js) application featuring
 - **User Management**: Integrated controls for editing, locking, or permanently deleting user accounts
 - **Security Auditing**: Review detailed logs of student behavior with decision status, timestamps, and approver information
 - **Suspicious Activity Monitor**: Real-time dashboard showing violation counts, activity types, and approval status
-- **Quiz Management**: Create, edit, and manage quiz questions and difficulty levels
+- **Question Management (Admin Dashboard)**:
+  - **Subjects dropdown** populated from MongoDB via `GET /api/questions/categories`
+  - **Dark-themed table view**: Question Text, Options (A–D), Correct Answer
+  - **Delete action**: `DELETE /api/questions/:id` (JWT-protected; Admin-only)
+  - **“Add Question”** stays pinned top-right of the section
 
 ---
 
@@ -187,11 +191,13 @@ npm install
 Create a `.env` file in the **server** folder with the following:
 
 ```env
-MONGO_URI=mongodb://localhost:27017/quiz-app
+MONGO_URI=mongodb://localhost:27017/cds_quiz_db
 JWT_SECRET=your_jwt_secret_key_here
+EMAIL_SERVICE=gmail
 EMAIL_USER=your_email@gmail.com
-EMAIL_PASSWORD=your_app_password
-PORT=5000
+EMAIL_PASS=your_app_password
+OTP_EXPIRY_MINUTES=5
+PORT=5001
 ```
 
 **Note**: For MongoDB Atlas, use: `mongodb+srv://username:password@cluster.mongodb.net/quiz-app`
@@ -211,9 +217,9 @@ npm install
 #### Terminal 1 - Start Backend Server
 ```bash
 cd server
-npm run dev
+npm start
 ```
-✅ Backend will run on: `http://localhost:5000`
+✅ Backend will run on: `http://localhost:5001`
 
 #### Terminal 2 - Start Frontend App
 ```bash
@@ -225,6 +231,14 @@ npm start
 ### Option B: Run Both Concurrently (if configured)
 ```bash
 npm run dev
+```
+
+### (Optional) Seed Questions into MongoDB
+If your questions currently live in `client/src/components/Quiz/mock.json`, import them into MongoDB so the Admin/Teacher dashboards can manage them:
+
+```bash
+cd server
+npm run seed:mock
 ```
 
 ---
@@ -242,6 +256,8 @@ npm run dev
 |--------|----------|-------------|
 | POST | `/signup` | Register new user |
 | POST | `/login` | User login |
+| POST | `/send-otp` | Send OTP to student email |
+| POST | `/verify-otp` | Verify OTP and issue JWT |
 | POST | `/logout` | User logout |
 | POST | `/forgot-password` | Request password reset |
 | POST | `/reset-password` | Reset password with token |
@@ -262,8 +278,15 @@ npm run dev
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/questions` | Fetch quiz questions |
+| GET | `/questions/subjects` | Fetch all unique subjects |
 | POST | `/submit-quiz` | Submit quiz answers |
 | GET | `/results/:id` | Get quiz results |
+
+### Question Management Routes (`/api/questions`)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/categories` | Fetch all unique categories (Teacher/Admin) |
+| DELETE | `/:id` | Delete a question (Admin-only) |
 
 ---
 
@@ -342,8 +365,8 @@ npm run dev
 
 ### Backend Scripts (in `/server`)
 ```bash
-npm run dev          # Start server with nodemon (auto-reload)
 npm start            # Start server normally
+npm run seed:mock    # Import questions from client mock.json into MongoDB
 ```
 
 ### Frontend Scripts (in `/client`)

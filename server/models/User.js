@@ -32,6 +32,8 @@ const userSchema = new mongoose.Schema({
     },
     passwordResetToken: String,
     passwordResetExpires: Date,
+    otpCode: String,
+    otpExpiresAt: Date,
     isBlocked: {
         type: Boolean,
         default: false

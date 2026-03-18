@@ -84,7 +84,12 @@ exports.login = async (req, res) => {
             return res.status(403).json({ msg: 'Your account has been blocked. Contact administrator.' });
         }
 
-        // Compare password
+        // Students must use OTP login
+        if (user.role === 'Student') {
+            return res.status(400).json({ msg: 'Students must login with OTP. Please send an OTP to your email.' });
+        }
+
+        // Compare password for Teacher/Admin
         const isMatch = password === user.password;
         if (!isMatch) {
             return res.status(400).json({ msg: 'Invalid credentials' });
@@ -110,6 +115,116 @@ exports.login = async (req, res) => {
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
+    }
+};
+
+// @desc    Send OTP to student email for login
+// @route   POST /api/auth/send-otp
+// @access  Public
+exports.sendOtp = async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ msg: 'Email and password are required to send an OTP' });
+    }
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ msg: 'No user found with this email' });
+        }
+
+        if (user.role !== 'Student') {
+            return res.status(400).json({ msg: 'OTP login is only available for students' });
+        }
+
+        // First factor: verify student password before sending OTP
+        if (password !== user.password) {
+            return res.status(400).json({ msg: 'Invalid credentials' });
+        }
+
+        // Generate a 6-digit OTP code
+        const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+        const expiryMinutes = parseInt(process.env.OTP_EXPIRY_MINUTES, 10) || 5;
+        const otpExpiresAt = new Date(Date.now() + expiryMinutes * 60 * 1000);
+
+        user.otpCode = otpCode;
+        user.otpExpiresAt = otpExpiresAt;
+
+        await user.save();
+
+        const message = `Your login code is: ${otpCode}\n\nThis code will expire in ${expiryMinutes} minutes.`;
+
+        await sendEmail({
+            email: user.email,
+            subject: 'Your Quiz App Login Code',
+            message
+        });
+
+        res.json({ msg: 'OTP sent to your email' });
+    } catch (err) {
+        console.error('sendOtp error:', err);
+
+        // Ensure OTP fields are cleared on failure to avoid reuse
+        await User.findOneAndUpdate({ email }, { otpCode: undefined, otpExpiresAt: undefined });
+
+        res.status(500).json({ msg: 'Server error while sending OTP', error: err.message });
+    }
+};
+
+// @desc    Verify OTP and return JWT token
+// @route   POST /api/auth/verify-otp
+// @access  Public
+exports.verifyOtp = async (req, res) => {
+    const { email, otp } = req.body;
+
+    if (!email || !otp) {
+        return res.status(400).json({ msg: 'Email and OTP are required' });
+    }
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ msg: 'Invalid email or OTP' });
+        }
+
+        if (user.role !== 'Student') {
+            return res.status(400).json({ msg: 'OTP login is only available for students' });
+        }
+
+        if (!user.otpCode || !user.otpExpiresAt || user.otpExpiresAt < new Date()) {
+            return res.status(400).json({ msg: 'OTP has expired. Please request a new one.' });
+        }
+
+        if (otp !== user.otpCode) {
+            return res.status(400).json({ msg: 'Invalid OTP' });
+        }
+
+        // Clear OTP fields after successful verification
+        user.otpCode = undefined;
+        user.otpExpiresAt = undefined;
+        await user.save();
+
+        // Return jsonwebtoken
+        const payload = {
+            user: {
+                id: user.id,
+                role: user.role
+            }
+        };
+
+        jwt.sign(
+            payload,
+            process.env.JWT_SECRET,
+            { expiresIn: '2h' },
+            (err, token) => {
+                if (err) throw err;
+                res.json({ token, cheatedFlag: user.cheatedFlag });
+            }
+        );
+    } catch (err) {
+        console.error('verifyOtp error:', err);
+        res.status(500).json({ msg: 'Server error while verifying OTP', error: err.message });
     }
 };
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { signup, login, forgotPassword, resetPassword, getMe, reportSuspiciousActivity, clearCheatedFlag, logout } = require('../controllers/auth');
+const { signup, login, sendOtp, verifyOtp, forgotPassword, resetPassword, getMe, reportSuspiciousActivity, clearCheatedFlag, logout } = require('../controllers/auth');
 const { protect } = require('../middleware/auth');
 
 // @route   GET api/auth/me
@@ -17,6 +17,16 @@ router.post('/signup', signup);
 // @desc    Authenticate user & get token
 // @access  Public
 router.post('/login', login);
+
+// @route   POST api/auth/send-otp
+// @desc    Send OTP to student email
+// @access  Public
+router.post('/send-otp', sendOtp);
+
+// @route   POST api/auth/verify-otp
+// @desc    Verify OTP and issue token
+// @access  Public
+router.post('/verify-otp', verifyOtp);
 
 // @route   POST api/auth/forgot-password
 // @desc    Forgot password

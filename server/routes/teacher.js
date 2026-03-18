@@ -9,7 +9,8 @@ const {
     updateQuestion,
     deleteQuestion,
     kickStudent,
-    updateQuestionOrder
+    updateQuestionOrder,
+    getSubjects
 } = require('../controllers/teacher');
 
 // @route   GET api/teacher/students
@@ -31,6 +32,11 @@ router.post('/questions', protect, authorize('Teacher', 'Admin'), createQuestion
 // @desc    Get all questions
 // @access  Private (Teacher)
 router.get('/questions', protect, authorize('Teacher', 'Admin'), getQuestions);
+
+// @route   GET api/teacher/questions/subjects
+// @desc    Get all unique subjects
+// @access  Private (Teacher, Admin)
+router.get('/questions/subjects', protect, authorize('Teacher', 'Admin'), getSubjects);
 
 // @route   GET api/teacher/questions/:id
 // @desc    Get a single question

@@ -31,6 +31,7 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/teacher', require('./routes/teacher'));
 app.use('/api/admin', require('./routes/admin'));
+app.use('/api/questions', require('./routes/questions'));
 
 // Socket.io connection
 io.on('connection', (socket) => {

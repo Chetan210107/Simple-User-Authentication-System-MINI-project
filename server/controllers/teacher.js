@@ -134,6 +134,17 @@ exports.kickStudent = async (req, res) => {
     }
 };
 
+
+exports.getSubjects = async (req, res) => {
+    try {
+        const subjects = await Question.distinct('subject');
+        res.json(subjects);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
 exports.updateQuestionOrder = async (req, res) => {
     const { questionIds } = req.body; // Array of question _id strings in new order
 
