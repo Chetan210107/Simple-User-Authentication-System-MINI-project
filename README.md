@@ -231,14 +231,6 @@ npm run dev
 
 ## 📋 Default Credentials for Testing
 
-### Admin Account
-- **Email**: `admin@example.com`
-- **Password**: `admin123`
-
-### Student Account
-- **Email**: `student@example.com`
-- **Password**: `student123`
-
 **Note**: Create your own user accounts through the Signup page for better testing.
 
 ---
