@@ -46,6 +46,7 @@ const AdminDashboard = () => {
   const [countdown, setCountdown] = useState(10);
   const [categories, setCategories] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
+  const [isQuestionsExpanded, setIsQuestionsExpanded] = useState(false);
 
   const togglePasswordVisibility = (userId) => {
     setShowPasswords((prev) => ({ ...prev, [userId]: !prev[userId] }));
@@ -135,6 +136,12 @@ const AdminDashboard = () => {
       }
     }
   }, [socket]);
+
+  useEffect(() => {
+    if (selectedSubject) {
+      setIsQuestionsExpanded(true);
+    }
+  }, [selectedSubject]);
 
   // Countdown timer for auto-block on timeout
   useEffect(() => {
@@ -628,49 +635,79 @@ const AdminDashboard = () => {
       <div className="glass-card" style={{ marginTop: '2rem' }}>
         <div
           style={{
-            position: 'sticky',
-            top: 0,
-            zIndex: 2,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
             gap: '1rem',
-            marginBottom: '1rem',
-            paddingBottom: '0.5rem',
-            background: 'rgba(0,0,0,0.15)',
-            backdropFilter: 'blur(6px)',
+            padding: '1rem',
+            background: 'rgba(0,0,0,0.12)',
+            borderBottom: '1px solid rgba(255,255,255,0.08)',
           }}
         >
-          <Header as="h3" style={{ color: 'white', margin: 0 }}>
-            <Icon name="question circle" /> Question Management
-          </Header>
+          <div
+            onClick={() => setIsQuestionsExpanded((prev) => !prev)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              cursor: 'pointer',
+              color: 'white',
+            }}
+          >
+            <Icon
+              name="chevron right"
+              style={{
+                transform: isQuestionsExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
+                transition: 'transform 0.25s ease',
+              }}
+            />
+            <div>
+              <div style={{ fontSize: '1rem', fontWeight: 600 }}>View All Questions</div>
+              <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>
+                Questions ({questions.length})
+              </div>
+            </div>
+          </div>
+
           <Button primary onClick={() => openModal()}>
             <Icon name="plus" /> Add Question
           </Button>
         </div>
 
-        <Form.Dropdown
-          placeholder="Select Subject"
-          fluid
-          selection
-          inverted
-          menu={{ inverted: true }}
-          options={[
-            { key: 'all', text: 'All Questions', value: '' },
-            ...categories.map((subject) => ({ key: subject, text: subject, value: subject })),
-          ]}
-          value={selectedSubject}
-          onChange={(e, { value }) => setSelectedSubject(value)}
+        <div
           style={{
-            marginBottom: '1rem',
-            background: '#1b1c1d',
-            color: 'white',
-            border: '1px solid rgba(255,255,255,0.12)',
-            borderRadius: 6,
+            maxHeight: isQuestionsExpanded ? '2000px' : 0,
+            opacity: isQuestionsExpanded ? 1 : 0,
+            overflow: 'hidden',
+            transition: 'max-height 0.35s ease, opacity 0.35s ease',
           }}
-        />
+        >
+          <div style={{ padding: isQuestionsExpanded ? '1rem' : '0 1rem' }}>
+            <Form.Dropdown
+              placeholder="Select Subject"
+              fluid
+              selection
+              inverted
+              menu={{ inverted: true }}
+              options={[
+                { key: 'all', text: 'All Questions', value: '' },
+                ...categories.map((subject) => ({ key: subject, text: subject, value: subject })),
+              ]}
+              value={selectedSubject}
+              onChange={(e, { value }) => {
+                setSelectedSubject(value);
+                if (value) setIsQuestionsExpanded(true);
+              }}
+              style={{
+                marginBottom: '1rem',
+                background: '#1b1c1d',
+                color: 'white',
+                border: '1px solid rgba(255,255,255,0.12)',
+                borderRadius: 6,
+              }}
+            />
 
-        <Table inverted basic="very" compact>
+            <Table inverted basic="very" compact>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell width={6}>Question Text</Table.HeaderCell>
@@ -699,6 +736,7 @@ const AdminDashboard = () => {
             ))}
           </Table.Body>
         </Table>
+        </div>
       </div>
 
       {/* Question Modal */}
