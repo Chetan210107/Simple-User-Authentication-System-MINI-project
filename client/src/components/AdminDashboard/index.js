@@ -708,34 +708,35 @@ const AdminDashboard = () => {
             />
 
             <Table inverted basic="very" compact>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell width={6}>Question Text</Table.HeaderCell>
-              <Table.HeaderCell width={2}>A</Table.HeaderCell>
-              <Table.HeaderCell width={2}>B</Table.HeaderCell>
-              <Table.HeaderCell width={2}>C</Table.HeaderCell>
-              <Table.HeaderCell width={2}>D</Table.HeaderCell>
-              <Table.HeaderCell>Correct Answer</Table.HeaderCell>
-              <Table.HeaderCell>Actions</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {filteredQuestions.map((q) => (
-              <Table.Row key={q._id}>
-                <Table.Cell>{q.question}</Table.Cell>
-                <Table.Cell>{q.options?.[0] || '-'}</Table.Cell>
-                <Table.Cell>{q.options?.[1] || '-'}</Table.Cell>
-                <Table.Cell>{q.options?.[2] || '-'}</Table.Cell>
-                <Table.Cell>{q.options?.[3] || '-'}</Table.Cell>
-                <Table.Cell>{q.answer}</Table.Cell>
-                <Table.Cell>
-                  <Button size="tiny" icon="edit" onClick={() => openModal(q)} />
-                  <Button size="tiny" icon="trash" color="red" onClick={() => handleDeleteQuestion(q._id)} />
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell width={6}>Question Text</Table.HeaderCell>
+                  <Table.HeaderCell width={2}>A</Table.HeaderCell>
+                  <Table.HeaderCell width={2}>B</Table.HeaderCell>
+                  <Table.HeaderCell width={2}>C</Table.HeaderCell>
+                  <Table.HeaderCell width={2}>D</Table.HeaderCell>
+                  <Table.HeaderCell>Correct Answer</Table.HeaderCell>
+                  <Table.HeaderCell>Actions</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {filteredQuestions.map((q) => (
+                  <Table.Row key={q._id}>
+                    <Table.Cell>{q.question}</Table.Cell>
+                    <Table.Cell>{q.options?.[0] || '-'}</Table.Cell>
+                    <Table.Cell>{q.options?.[1] || '-'}</Table.Cell>
+                    <Table.Cell>{q.options?.[2] || '-'}</Table.Cell>
+                    <Table.Cell>{q.options?.[3] || '-'}</Table.Cell>
+                    <Table.Cell>{q.answer}</Table.Cell>
+                    <Table.Cell>
+                      <Button size="tiny" icon="edit" onClick={() => openModal(q)} />
+                      <Button size="tiny" icon="trash" color="red" onClick={() => handleDeleteQuestion(q._id)} />
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table>
+          </div>
         </div>
       </div>
 

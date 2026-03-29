@@ -38,6 +38,7 @@ A robust **MERN stack** (MongoDB, Express, React, Node.js) application featuring
   - **Dark-themed table view**: Question Text, Options (A–D), Correct Answer
   - **Delete action**: `DELETE /api/questions/:id` (JWT-protected; Admin-only)
   - **“Add Question”** stays pinned top-right of the section
+  - **Collapsible question list**: Toggle visibility to reduce clutter while keeping the add button always available
 
 ---
 
