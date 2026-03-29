@@ -119,9 +119,19 @@ const AdminDashboard = () => {
           return [newActivity, ...prevActivities];
         });
       });
+
+      // Live refresh of Admin tables without manual reload
+      socket.on('refreshData', () => {
+        fetchUsers();
+        fetchSuspiciousActivities();
+        fetchQuestions();
+        fetchCategories();
+      });
+
       return () => {
         socket.off('activeStudentsCount');
         socket.off('suspiciousAlert');
+        socket.off('refreshData');
       }
     }
   }, [socket]);
@@ -615,7 +625,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Question Management */}
-      <div className="glass-card">
+      <div className="glass-card" style={{ marginTop: '2rem' }}>
         <div
           style={{
             position: 'sticky',
